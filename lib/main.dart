@@ -1,7 +1,6 @@
 import 'package:chat_app/start_page.dart';
 import 'package:flutter/material.dart';
 
-import 'demo.dart';
 
 void main() {
   runApp(const MyApp());
