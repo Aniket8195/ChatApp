@@ -14,7 +14,7 @@ class StartPage extends StatelessWidget {
           const SizedBox(
             height: 175,
           ),
-          Image.asset('assets/Images/firstpageimage.jpg', width: 300,height: 300,),
+          Image.asset('assets/Images/FirstPageImage.jpg', width: 300,height: 300,),
           const SizedBox(
             height: 20,
           ),
