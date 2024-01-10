@@ -1,23 +1,40 @@
-import 'package:chat_app/start_page.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+import 'main_code/join_screen.dart';
+import 'main_code/signalling.service.dart';
 
 void main() {
-  runApp(const MyApp());
+  // start videoCall app
+  runApp(VideoCallApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class VideoCallApp extends StatelessWidget {
+  VideoCallApp({super.key});
+
+  // signalling server url
+  final String websocketUrl = "WEB_SOCKET_SERVER_URL";
+
+  // generate callerID of local user
+  final String selfCallerID =
+  Random().nextInt(999999).toString().padLeft(6, '0');
 
   @override
   Widget build(BuildContext context) {
+    // init signalling service
+    SignallingService.instance.init(
+      websocketUrl: websocketUrl,
+      selfCallerID: selfCallerID,
+    );
+
+    // return material app
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: const ColorScheme.dark(),
       ),
-      home:const StartPage(),
+      themeMode: ThemeMode.dark,
+      home: JoinScreen(selfCallerId: selfCallerID),
     );
   }
 }
